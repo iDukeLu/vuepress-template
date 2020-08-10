@@ -1,0 +1,16 @@
+{
+  "name": "vuepress-template",
+  "version": "1.0.0",
+  "repository": "https://github.com/MrHanson/vuepress-template.git",
+  "author": "mrhanson <chihanghanson@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:deploy": "git subtree push --prefix=docs/.vuepress/dist origin gh-pages"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "vuepress": "^1.5.0"
+  }
+}
