@@ -1,23 +1,21 @@
 /**
  * @description 根据docs下的自定义目录生成侧边栏配置
- * @example 
+ * @example
  *    如docs下有 docs/部署 和 docs/配置
  *    则生成如下对象
  *    {
-        '/配置/': ['/配置/first', '/配置/second'],
-        '/部署/': ['/部署/one', '/部署/two']
-      }
-      默认主题侧边栏生成规则请参考：
-        https://vuepress.vuejs.org/zh/theme/default-theme-config.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F
+ *      '/配置/': ['/配置/first', '/配置/second'],
+ *      '/部署/': ['/部署/one', '/部署/two']
+ *    }
+ *    默认主题侧边栏生成规则请参考：
+ *      https://vuepress.vuejs.org/zh/theme/default-theme-config.html#%E4%BE%A7%E8%BE%B9%E6%A0%8F
  */
-
 function getCategorySidebar() {
   const fs = require('fs')
   // 过滤 docs 根目录下的 .vuepress 文件夹、md 文件
   return fs.readdirSync('./docs')
     .filter(fileName => !/.md|.vuepress/.test(fileName))
-    .map(dir => {
-    return {
+    .map(dir => ({
       title: dir, // 必要的
       collapsable: false, // 可选的, 默认值是 true,
       sidebarDepth: 2, // 可选的, 默认值是 1
@@ -25,8 +23,8 @@ function getCategorySidebar() {
           .readdirSync(`./docs/${dir}`)
           .filter(f => /.md/.test(f))
           .map(f => '/' + dir + '/' + f.replace('.md', ''))
-    }
-  })
+      })
+    )
 }
 
 module.exports = {
@@ -44,7 +42,8 @@ module.exports = {
     nav: [
       { text: '首页', link: '/' },
       { text: '文档', link: '/home' },
-      { text: 'Google', link: 'https://google.com' }
+      { text: '仓库', link: 'http://code.local/yx-property' },
+      { text: 'Google', link: 'https://www.google.com' }
     ],
     displayAllHeaders: false,
     sidebarDepth: 2,
